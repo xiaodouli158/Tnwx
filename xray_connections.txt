@@ -1,0 +1,7 @@
+# Xray Connection Strings - Generated on Sat Apr 12 06:59:47 PM UTC 2025
+
+## VMess Connection
+vmess://eyJ2IjoiMiIsInBzIjoiWHJheSBWTWVzcyBDb25uZWN0aW9uIiwiYWRkIjoibmx2Z2tsLTgwODAuY3NiLmFwcCIsInBvcnQiOiI0NDMiLCJpZCI6ImRlMDRhZGQ5LTVjNjgtOGJhYi05NTBjLTA4Y2Q1MzIwZGYxOCIsImFpZCI6IjAiLCJuZXQiOiJ3cyIsInR5cGUiOiJub25lIiwiaG9zdCI6Im5sdmdrbC04MDgwLmNzYi5hcHAiLCJwYXRoIjoiL2FwaS9zdHJlYW0vZGF0YSIsInRscyI6InRscyIsInNuaSI6Im5sdmdrbC04MDgwLmNzYi5hcHAiLCJhbHBuIjoiaHR0cC8xLjEiLCJmcCI6ImNocm9tZSIsImFsbG93SW5zZWN1cmUiOmZhbHNlfQ==
+
+## VLESS Connection
+vless://de04add9-5c68-8bab-950c-08cd5320df18@nlvgkl-8080.csb.app:443?encryption=none&security=tls&type=ws&host=nlvgkl-8080.csb.app&path=%2Fapi%2Fevents%2Fsubscribe&sni=nlvgkl-8080.csb.app&alpn=http%2F1.1&fp=chrome&allowInsecure=false#Xray_VLESS_Connection

@@ -1,0 +1,81 @@
+{
+  "log": {
+    "access": "logs/access.log",
+    "error": "logs/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 10000,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "de04add9-5c68-8bab-950c-08cd5320df18",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "test.domain.com",
+          "alpn": ["http/1.1"],
+          "fingerprint": "chrome",
+          "allowInsecure": false,
+          "certificates": [
+            {
+              "certificateFile": "certs/server.crt",
+              "keyFile": "certs/server.key"
+            }
+          ]
+        },
+        "wsSettings": {
+          "path": "/api/stream/data"
+        }
+      }
+    },
+    {
+      "port": 10001,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "de04add9-5c68-8bab-950c-08cd5320df18",
+            "level": 0,
+            "email": "user@example.com"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "test.domain.com",
+          "alpn": ["http/1.1"],
+          "fingerprint": "chrome",
+          "allowInsecure": false,
+          "certificates": [
+            {
+              "certificateFile": "certs/server.crt",
+              "keyFile": "certs/server.key"
+            }
+          ]
+        },
+        "wsSettings": {
+          "path": "/api/events/subscribe"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}

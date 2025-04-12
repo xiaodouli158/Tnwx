@@ -1,0 +1,119 @@
+2025/04/12 18:48:15 [alert] 4699#0: unlink() "/tmp/nginx.pid" failed (2: No such file or directory)
+2025/04/12 18:53:37 [notice] 2525#0: using the "epoll" event method
+2025/04/12 18:53:37 [notice] 2525#0: nginx/1.24.0
+2025/04/12 18:53:37 [notice] 2525#0: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2025/04/12 18:53:37 [notice] 2525#0: OS: Linux 6.1.43
+2025/04/12 18:53:37 [notice] 2525#0: getrlimit(RLIMIT_NOFILE): 10240:10240
+2025/04/12 18:53:37 [notice] 2526#0: start worker processes
+2025/04/12 18:53:37 [notice] 2526#0: start worker process 2527
+2025/04/12 18:53:37 [notice] 2526#0: start worker process 2528
+2025/04/12 18:59:34 [notice] 2526#0: signal 15 (SIGTERM) received from 3904, exiting
+2025/04/12 18:59:34 [notice] 2528#0: signal 15 (SIGTERM) received from 3904, exiting
+2025/04/12 18:59:34 [notice] 2528#0: exiting
+2025/04/12 18:59:34 [notice] 2527#0: signal 15 (SIGTERM) received from 3904, exiting
+2025/04/12 18:59:34 [notice] 2528#0: exit
+2025/04/12 18:59:34 [notice] 2527#0: exiting
+2025/04/12 18:59:34 [notice] 2527#0: exit
+2025/04/12 18:59:35 [notice] 2526#0: signal 17 (SIGCHLD) received from 2528
+2025/04/12 18:59:35 [notice] 2526#0: worker process 2528 exited with code 0
+2025/04/12 18:59:35 [notice] 2526#0: signal 29 (SIGIO) received
+2025/04/12 18:59:35 [notice] 2526#0: signal 17 (SIGCHLD) received from 2527
+2025/04/12 18:59:35 [notice] 2526#0: worker process 2527 exited with code 0
+2025/04/12 18:59:35 [notice] 2526#0: exit
+2025/04/12 18:59:49 [notice] 4135#0: using the "epoll" event method
+2025/04/12 18:59:49 [notice] 4135#0: nginx/1.24.0
+2025/04/12 18:59:49 [notice] 4135#0: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2025/04/12 18:59:49 [notice] 4135#0: OS: Linux 6.1.43
+2025/04/12 18:59:49 [notice] 4135#0: getrlimit(RLIMIT_NOFILE): 10240:10240
+2025/04/12 18:59:49 [notice] 4136#0: start worker processes
+2025/04/12 18:59:49 [notice] 4136#0: start worker process 4137
+2025/04/12 18:59:49 [notice] 4136#0: start worker process 4138
+2025/04/12 19:02:51 [notice] 4603#0: signal process started
+2025/04/12 19:02:51 [notice] 4136#0: signal 1 (SIGHUP) received from 4603, reconfiguring
+2025/04/12 19:02:51 [notice] 4136#0: reconfiguring
+2025/04/12 19:02:51 [notice] 4136#0: using the "epoll" event method
+2025/04/12 19:02:51 [notice] 4136#0: start worker processes
+2025/04/12 19:02:51 [notice] 4136#0: start worker process 4605
+2025/04/12 19:02:51 [notice] 4136#0: start worker process 4606
+2025/04/12 19:02:51 [notice] 4137#0: gracefully shutting down
+2025/04/12 19:02:51 [notice] 4138#0: gracefully shutting down
+2025/04/12 19:02:51 [notice] 4137#0: exiting
+2025/04/12 19:02:51 [notice] 4138#0: exiting
+2025/04/12 19:02:51 [notice] 4138#0: exit
+2025/04/12 19:02:51 [notice] 4137#0: exit
+2025/04/12 19:02:51 [notice] 4136#0: signal 17 (SIGCHLD) received from 4138
+2025/04/12 19:02:51 [notice] 4136#0: worker process 4138 exited with code 0
+2025/04/12 19:02:51 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:02:51 [notice] 4136#0: signal 17 (SIGCHLD) received from 4137
+2025/04/12 19:02:51 [notice] 4136#0: worker process 4137 exited with code 0
+2025/04/12 19:02:51 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:09:24 [notice] 4946#0: signal process started
+2025/04/12 19:09:24 [notice] 4136#0: signal 1 (SIGHUP) received from 4946, reconfiguring
+2025/04/12 19:09:24 [notice] 4136#0: reconfiguring
+2025/04/12 19:09:24 [notice] 4136#0: using the "epoll" event method
+2025/04/12 19:09:24 [notice] 4136#0: start worker processes
+2025/04/12 19:09:24 [notice] 4136#0: start worker process 4949
+2025/04/12 19:09:24 [notice] 4136#0: start worker process 4950
+2025/04/12 19:09:24 [notice] 4606#0: gracefully shutting down
+2025/04/12 19:09:24 [notice] 4605#0: gracefully shutting down
+2025/04/12 19:09:24 [notice] 4605#0: exiting
+2025/04/12 19:09:24 [notice] 4606#0: exiting
+2025/04/12 19:09:24 [notice] 4605#0: exit
+2025/04/12 19:09:24 [notice] 4606#0: exit
+2025/04/12 19:09:24 [notice] 4136#0: signal 17 (SIGCHLD) received from 4606
+2025/04/12 19:09:24 [notice] 4136#0: worker process 4605 exited with code 0
+2025/04/12 19:09:24 [notice] 4136#0: worker process 4606 exited with code 0
+2025/04/12 19:09:24 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:11:04 [notice] 5267#0: signal process started
+2025/04/12 19:11:04 [notice] 4136#0: signal 1 (SIGHUP) received from 5267, reconfiguring
+2025/04/12 19:11:04 [notice] 4136#0: reconfiguring
+2025/04/12 19:11:04 [notice] 4136#0: using the "epoll" event method
+2025/04/12 19:11:04 [notice] 4136#0: start worker processes
+2025/04/12 19:11:04 [notice] 4136#0: start worker process 5269
+2025/04/12 19:11:04 [notice] 4136#0: start worker process 5270
+2025/04/12 19:11:04 [notice] 4950#0: gracefully shutting down
+2025/04/12 19:11:04 [notice] 4949#0: gracefully shutting down
+2025/04/12 19:11:04 [notice] 4949#0: exiting
+2025/04/12 19:11:04 [notice] 4950#0: exiting
+2025/04/12 19:11:04 [notice] 4950#0: exit
+2025/04/12 19:11:04 [notice] 4949#0: exit
+2025/04/12 19:11:05 [notice] 4136#0: signal 17 (SIGCHLD) received from 4950
+2025/04/12 19:11:05 [notice] 4136#0: worker process 4950 exited with code 0
+2025/04/12 19:11:05 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:11:05 [notice] 4136#0: signal 17 (SIGCHLD) received from 4949
+2025/04/12 19:11:05 [notice] 4136#0: worker process 4949 exited with code 0
+2025/04/12 19:11:05 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:11:26 [error] 5270#0: *5 open() "./html/favicon.ico" failed (2: No such file or directory), client: 10.0.0.1, server: shyqhx-8080.csb.app, request: "GET /favicon.ico HTTP/1.1", host: "nlvgkl-8080.csb.app", referrer: "https://nlvgkl-8080.csb.app/"
+2025/04/12 19:12:23 [notice] 5546#0: signal process started
+2025/04/12 19:12:23 [notice] 4136#0: signal 1 (SIGHUP) received from 5546, reconfiguring
+2025/04/12 19:12:23 [notice] 4136#0: reconfiguring
+2025/04/12 19:12:23 [notice] 4136#0: using the "epoll" event method
+2025/04/12 19:12:23 [notice] 4136#0: start worker processes
+2025/04/12 19:12:23 [notice] 4136#0: start worker process 5547
+2025/04/12 19:12:23 [notice] 4136#0: start worker process 5548
+2025/04/12 19:12:23 [notice] 5270#0: gracefully shutting down
+2025/04/12 19:12:23 [notice] 5269#0: gracefully shutting down
+2025/04/12 19:12:23 [notice] 5269#0: exiting
+2025/04/12 19:12:23 [notice] 5270#0: exiting
+2025/04/12 19:12:23 [notice] 5269#0: exit
+2025/04/12 19:12:23 [notice] 5270#0: exit
+2025/04/12 19:12:23 [notice] 4136#0: signal 17 (SIGCHLD) received from 5270
+2025/04/12 19:12:23 [notice] 4136#0: worker process 5270 exited with code 0
+2025/04/12 19:12:23 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:12:23 [notice] 4136#0: signal 17 (SIGCHLD) received from 5269
+2025/04/12 19:12:23 [notice] 4136#0: worker process 5269 exited with code 0
+2025/04/12 19:12:23 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 19:53:04 [info] 5547#0: *10 client 127.0.0.1 closed keepalive connection
+2025/04/12 20:08:27 [notice] 4136#0: signal 15 (SIGTERM) received from 7801, exiting
+2025/04/12 20:08:27 [notice] 5547#0: signal 15 (SIGTERM) received from 7801, exiting
+2025/04/12 20:08:27 [info] 5547#0: epoll_wait() failed (4: Interrupted system call)
+2025/04/12 20:08:27 [notice] 5547#0: exiting
+2025/04/12 20:08:27 [notice] 5548#0: exiting
+2025/04/12 20:08:27 [notice] 5547#0: exit
+2025/04/12 20:08:27 [notice] 5548#0: exit
+2025/04/12 20:08:27 [notice] 4136#0: signal 17 (SIGCHLD) received from 5547
+2025/04/12 20:08:27 [notice] 4136#0: worker process 5547 exited with code 0
+2025/04/12 20:08:27 [notice] 4136#0: signal 29 (SIGIO) received
+2025/04/12 20:08:27 [notice] 4136#0: signal 17 (SIGCHLD) received from 5548
+2025/04/12 20:08:27 [notice] 4136#0: worker process 5548 exited with code 0
+2025/04/12 20:08:27 [notice] 4136#0: exit

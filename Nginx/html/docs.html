@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目使用文档</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin-top: 25px;
+        }
+        code {
+            background-color: #f8f8f8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            color: #e74c3c;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .note {
+            background-color: #e7f5fe;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff5e6;
+            border-left: 4px solid #e67e22;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .back-to-top:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>项目使用文档</h1>
+        
+        <div class="toc">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">项目概述</a></li>
+                <li><a href="#structure">目录结构</a></li>
+                <li><a href="#config">配置说明</a>
+                    <ul>
+                        <li><a href="#nginx-config">Nginx 配置</a></li>
+                        <li><a href="#xray-config">Xray 配置</a></li>
+                    </ul>
+                </li>
+                <li><a href="#usage">使用指南</a>
+                    <ul>
+                        <li><a href="#start">启动服务</a></li>
+                        <li><a href="#stop">停止服务</a></li>
+                        <li><a href="#update-domain">更新域名</a></li>
+                        <li><a href="#logs">查看日志</a></li>
+                        <li><a href="#connections">连接信息</a></li>
+                    </ul>
+                </li>
+                <li><a href="#deployment">部署指南</a></li>
+                <li><a href="#faq">常见问题解答</a></li>
+                <li><a href="#security">安全建议</a></li>
+            </ul>
+        </div>
+
+        <h2 id="overview">项目概述</h2>
+        <p>本项目是一个基于 Nginx 和 Xray 的服务，提供以下功能：</p>
+        <ol>
+            <li>网页服务：显示带有实时时间的简单网页</li>
+            <li>代理服务：通过 WebSocket 提供 VMess 和 VLESS 协议的代理</li>
+            <li>日志记录：详细记录所有访问请求，便于排查问题</li>
+        </ol>
+
+        <h2 id="structure">目录结构</h2>
+        <pre><code>/
+├── Nginx/                  # Nginx 相关文件
+│   ├── html/               # 静态网页文件
+│   ├── logs/               # Nginx 日志文件
+│   ├── mime.types          # MIME 类型配置
+│   ├── nginx-static        # Nginx 可执行文件
+│   ├── nginx.conf          # Nginx 配置文件
+│   └── start-nginx.sh      # Nginx 启动脚本
+├── Xray/                   # Xray 相关文件
+│   ├── certs/              # 证书文件
+│   ├── config.json         # Xray 配置文件
+│   ├── logs/               # Xray 日志文件
+│   └── xray                # Xray 可执行文件
+├── start-services.sh       # 服务启动脚本
+├── stop-services.sh        # 服务停止脚本
+├── update-domain.sh        # 域名更新脚本
+└── xray_connections.txt    # 连接信息文件</code></pre>
+
+        <h2 id="config">配置说明</h2>
+
+        <h3 id="nginx-config">Nginx 配置</h3>
+        <p>Nginx 配置文件位于 <code>Nginx/nginx.conf</code>，主要配置包括：</p>
+        <ol>
+            <li>监听端口：8080</li>
+            <li>服务器名称：当前配置为 <code>shyqhx-8080.csb.app</code></li>
+            <li>日志格式：详细记录请求信息，包括请求时间、客户端 IP、请求方法、URL、状态码等</li>
+            <li>日志文件：
+                <ul>
+                    <li>主访问日志：<code>logs/access.log</code></li>
+                    <li>默认位置访问日志：<code>logs/default_access.log</code></li>
+                    <li>失败请求日志：<code>logs/failed_requests.log</code></li>
+                    <li>未知请求日志：<code>logs/unknown_requests.log</code></li>
+                    <li>VMess 代理日志：<code>logs/vmess_access.log</code> 和 <code>logs/vmess_error.log</code></li>
+                    <li>VLESS 代理日志：<code>logs/vless_access.log</code> 和 <code>logs/vless_error.log</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 id="xray-config">Xray 配置</h3>
+        <p>Xray 配置文件位于 <code>Xray/config.json</code>，主要配置包括：</p>
+        <ol>
+            <li>入站代理：
+                <ul>
+                    <li>VMess 协议：监听 127.0.0.1:10000，路径为 <code>/api/stream/data</code></li>
+                    <li>VLESS 协议：监听 127.0.0.1:10001，路径为 <code>/api/events/subscribe</code></li>
+                </ul>
+            </li>
+            <li>服务器名称：当前配置为 <code>nlvgkl-8080.csb.app</code></li>
+            <li>日志文件：
+                <ul>
+                    <li>访问日志：<code>logs/access.log</code></li>
+                    <li>错误日志：<code>logs/error.log</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2 id="usage">使用指南</h2>
+
+        <h3 id="start">启动服务</h3>
+        <p>使用以下命令启动所有服务：</p>
+        <pre><code>./start-services.sh</code></pre>
+        <p>此命令将依次启动 Xray 和 Nginx 服务，并生成连接信息文件 <code>xray_connections.txt</code>。</p>
+
+        <h3 id="stop">停止服务</h3>
+        <p>使用以下命令停止所有服务：</p>
+        <pre><code>./stop-services.sh</code></pre>
+
+        <h3 id="update-domain">更新域名</h3>
+        <p>如果需要更改域名，使用以下命令：</p>
+        <pre><code>./update-domain.sh your-new-domain.com</code></pre>
+        <p>此命令将更新所有配置文件中的域名，包括 Nginx 配置、Xray 配置和启动脚本。</p>
+
+        <div class="note">
+            <strong>注意：</strong> 更新域名后，需要重启服务才能生效。
+        </div>
+
+        <h3 id="logs">查看日志</h3>
+        <p>可以使用以下命令查看各种日志：</p>
+        <pre><code># 查看 Nginx 主访问日志
+tail -f Nginx/logs/access.log
+
+# 查看默认位置访问日志
+tail -f Nginx/logs/default_access.log
+
+# 查看失败请求日志
+tail -f Nginx/logs/failed_requests.log
+
+# 查看 Xray 访问日志
+tail -f Xray/logs/access.log
+
+# 查看 Xray 错误日志
+tail -f Xray/logs/error.log</code></pre>
+
+        <h3 id="connections">连接信息</h3>
+        <p>启动服务后，连接信息将自动生成在 <code>xray_connections.txt</code> 文件中，包括：</p>
+        <ul>
+            <li>VMess 连接链接</li>
+            <li>VLESS 连接链接</li>
+        </ul>
+
+        <h2 id="deployment">部署指南</h2>
+        <h3>部署到新服务器</h3>
+        <ol>
+            <li>将整个项目目录复制到新服务器上</li>
+            <li>使用 <code>update-domain.sh</code> 脚本更新域名：
+                <pre><code>./update-domain.sh your-new-domain.com</code></pre>
+            </li>
+            <li>确保脚本具有执行权限：
+                <pre><code>chmod +x *.sh
+chmod +x Nginx/start-nginx.sh
+chmod +x Xray/xray</code></pre>
+            </li>
+            <li>启动服务：
+                <pre><code>./start-services.sh</code></pre>
+            </li>
+        </ol>
+
+        <h3>配置 HTTPS（可选）</h3>
+        <p>如果需要配置 HTTPS，请按照以下步骤操作：</p>
+        <ol>
+            <li>准备 SSL 证书和私钥文件，放置在 <code>Xray/certs/</code> 目录下</li>
+            <li>修改 Nginx 配置文件 <code>Nginx/nginx.conf</code>，取消注释 SSL 相关配置</li>
+            <li>修改 Xray 配置文件 <code>Xray/config.json</code>，确保 TLS 配置正确</li>
+            <li>重启服务：
+                <pre><code>./stop-services.sh
+./start-services.sh</code></pre>
+            </li>
+        </ol>
+
+        <h2 id="faq">常见问题解答</h2>
+
+        <h3>1. 如何确认服务是否正常运行？</h3>
+        <p>可以使用以下命令检查服务状态：</p>
+        <pre><code>ps aux | grep -E 'nginx|xray'</code></pre>
+        <p>如果看到 Nginx 和 Xray 进程，则表示服务正在运行。</p>
+        <p>也可以访问网页 <code>http://your-domain:8080</code> 查看是否显示带有时间的网页。</p>
+
+        <h3>2. 如何查看访问记录？</h3>
+        <p>所有对网页的访问记录都会被记录在 <code>Nginx/logs/default_access.log</code> 文件中。可以使用以下命令查看：</p>
+        <pre><code>tail -f Nginx/logs/default_access.log</code></pre>
+
+        <h3>3. 如何排查连接问题？</h3>
+        <p>如果遇到连接问题，可以按照以下步骤排查：</p>
+        <ol>
+            <li>检查服务是否正常运行</li>
+            <li>检查域名是否正确解析到服务器 IP</li>
+            <li>检查端口是否开放（8080）</li>
+            <li>查看错误日志：
+                <pre><code>tail -f Nginx/logs/error.log
+tail -f Xray/logs/error.log</code></pre>
+            </li>
+            <li>查看失败请求日志：
+                <pre><code>tail -f Nginx/logs/failed_requests.log</code></pre>
+            </li>
+        </ol>
+
+        <h3>4. 如何修改端口？</h3>
+        <p>如果需要修改端口，请按照以下步骤操作：</p>
+        <ol>
+            <li>修改 Nginx 配置文件 <code>Nginx/nginx.conf</code> 中的 <code>listen</code> 指令</li>
+            <li>如果使用 HTTPS，还需要修改 <code>start-services.sh</code> 中的 <code>SERVER_PORT</code> 变量</li>
+            <li>重启服务</li>
+        </ol>
+
+        <h3>5. 如何更新 UUID？</h3>
+        <p>如果需要更新 UUID，请按照以下步骤操作：</p>
+        <ol>
+            <li>生成新的 UUID</li>
+            <li>修改 Xray 配置文件 <code>Xray/config.json</code> 中的 <code>id</code> 字段</li>
+            <li>重启服务</li>
+        </ol>
+
+        <h2 id="security">安全建议</h2>
+        <div class="warning">
+            <strong>安全提示：</strong> 以下安全建议可以帮助您保护服务器和服务的安全。
+        </div>
+        <ol>
+            <li>定期更新 UUID 和密码</li>
+            <li>使用 HTTPS 加密连接</li>
+            <li>定期检查日志文件，查找异常访问</li>
+            <li>限制 IP 访问范围</li>
+            <li>使用防火墙保护服务器</li>
+        </ol>
+
+        <h2>更新日志</h2>
+        <h3>2025-04-12</h3>
+        <ul>
+            <li>添加了带有时间显示的网页</li>
+            <li>优化了日志记录功能</li>
+            <li>创建了域名更新脚本</li>
+            <li>完善了使用文档</li>
+        </ul>
+
+        <a href="#" class="back-to-top">返回顶部</a>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
