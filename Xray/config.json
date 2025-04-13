@@ -21,10 +21,8 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "test.domain.com",
+          "serverName": "localhost",
           "alpn": ["http/1.1"],
-          "fingerprint": "chrome",
-          "allowInsecure": false,
           "certificates": [
             {
               "certificateFile": "certs/server.crt",
@@ -45,8 +43,7 @@
         "clients": [
           {
             "id": "de04add9-5c68-8bab-950c-08cd5320df18",
-            "level": 0,
-            "email": "user@example.com"
+            "level": 0
           }
         ],
         "decryption": "none"
@@ -55,10 +52,8 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "test.domain.com",
+          "serverName": "localhost",
           "alpn": ["http/1.1"],
-          "fingerprint": "chrome",
-          "allowInsecure": false,
           "certificates": [
             {
               "certificateFile": "certs/server.crt",
