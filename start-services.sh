@@ -8,20 +8,27 @@ generate_connection_strings() {
   echo "Generating connection strings..."
 
   # Get server information from config
-  SERVER_ADDRESS="test.domain.com"
+  SERVER_ADDRESS="test.aaa.com"
   SERVER_PORT="443"
   VMESS_UUID=$(grep -o '"id": "[^"]*"' "$SCRIPT_DIR/Xray/config.json" | head -1 | cut -d '"' -f 4)
   VMESS_PATH=$(grep -o '"path": "[^"]*"' "$SCRIPT_DIR/Xray/config.json" | head -1 | cut -d '"' -f 4)
   VLESS_PATH=$(grep -o '"path": "[^"]*"' "$SCRIPT_DIR/Xray/config.json" | tail -1 | cut -d '"' -f 4)
 
   # Create VMess JSON config
-  VMESS_JSON='{"v":"2","ps":"Xray VMess Connection","add":"'$SERVER_ADDRESS'","port":"'$SERVER_PORT'","id":"'$VMESS_UUID'","aid":"0","net":"ws","type":"none","host":"'$SERVER_ADDRESS'","path":"'$VMESS_PATH'","tls":"tls","sni":"'$SERVER_ADDRESS'","alpn":"http/1.1","fp":"chrome","allowInsecure":false}'
+  VMESS_JSON='{"v":"2","ps":"Xray VMess Connection","add":"'$SERVER_ADDRESS'","port":"'$SERVER_PORT'","id":"'$VMESS_UUID'","aid":"0","net":"ws","type":"none","host":"'$SERVER_ADDRESS'","path":"'$VMESS_PATH'","tls":"tls","sni":"'$SERVER_ADDRESS'","alpn":"","fp":"","allowInsecure":false,"security":"auto"}'
 
   # Encode VMess config to base64
   VMESS_LINK="vmess://$(echo -n "$VMESS_JSON" | base64 -w 0)"
 
   # Create VLESS link
-  VLESS_LINK="vless://$VMESS_UUID@$SERVER_ADDRESS:$SERVER_PORT?encryption=none&security=tls&type=ws&host=$SERVER_ADDRESS&path=$(echo -n "$VLESS_PATH" | jq -sRr @uri)&sni=$SERVER_ADDRESS&alpn=http%2F1.1&fp=chrome&allowInsecure=false#Xray_VLESS_Connection"
+  # Check if jq is installed
+  if command -v jq &> /dev/null; then
+    ENCODED_PATH=$(echo -n "$VLESS_PATH" | jq -sRr @uri)
+  else
+    # Simple URL encoding for path if jq is not available
+    ENCODED_PATH=$(echo -n "$VLESS_PATH" | sed 's/\//%2F/g')
+  fi
+  VLESS_LINK="vless://$VMESS_UUID@$SERVER_ADDRESS:$SERVER_PORT?encryption=none&security=tls&type=ws&host=$SERVER_ADDRESS&sni=$SERVER_ADDRESS&path=$ENCODED_PATH#Xray_VLESS_Connection"
 
   # Save to file
   CONNECTION_FILE="$SCRIPT_DIR/xray_connections.txt"
