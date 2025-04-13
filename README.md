@@ -37,7 +37,7 @@
 Nginx 配置文件位于 `Nginx/nginx.conf`，主要配置包括：
 
 1. 监听端口：8080
-2. 服务器名称：当前配置为 `shyqhx-8080.csb.app`
+2. 服务器名称：当前配置为 `your-new-domain.com`
 3. 日志格式：详细记录请求信息，包括请求时间、客户端 IP、请求方法、URL、状态码等
 4. 日志文件：
    - 主访问日志：`logs/access.log`
