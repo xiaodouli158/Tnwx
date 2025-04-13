@@ -23,7 +23,7 @@
         "tlsSettings": {
           "serverName": "localhost",
           "alpn": ["http/1.1"],
-          "allowInsecure": false,
+          "allowInsecure": true,
           "certificates": [
             {
               "certificateFile": "certs/server.crt",
@@ -55,7 +55,7 @@
         "tlsSettings": {
           "serverName": "localhost",
           "alpn": ["http/1.1"],
-          "allowInsecure": false,
+          "allowInsecure": true,
           "certificates": [
             {
               "certificateFile": "certs/server.crt",
