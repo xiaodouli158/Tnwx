@@ -19,18 +19,7 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "localhost",
-          "alpn": ["http/1.1"],
-          "allowInsecure": true,
-          "certificates": [
-            {
-              "certificateFile": "certs/server.crt",
-              "keyFile": "certs/server.key"
-            }
-          ]
-        },
+        "security": "none",
         "wsSettings": {
           "path": "/api/stream/data"
         }
@@ -51,18 +40,7 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "localhost",
-          "alpn": ["http/1.1"],
-          "allowInsecure": true,
-          "certificates": [
-            {
-              "certificateFile": "certs/server.crt",
-              "keyFile": "certs/server.key"
-            }
-          ]
-        },
+        "security": "none",
         "wsSettings": {
           "path": "/api/events/subscribe"
         }
