@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # 检查是否提供了域名参数
 if [ -z "$1" ]; then
@@ -23,7 +24,10 @@ sed -i "s|server_name .*;|server_name $NEW_DOMAIN;|" "$SCRIPT_DIR/Nginx/nginx.co
 
 # 更新 Xray 配置中的域名
 echo "更新 Xray 配置..."
-sed -i "s|\"serverName\": \"[^\"]*\"|\"serverName\": \"$NEW_DOMAIN\"|" "$SCRIPT_DIR/Xray/config.json"
+# The following line is commented out because "serverName" is not a standard field in the current Xray/config.json structure for non-TLS inbounds.
+# Xray's inbounds are listening on 127.0.0.1, and Nginx handles the public domain and TLS termination (if configured).
+# If Xray were to handle TLS directly, this field might be used within its TLS settings.
+# sed -i "s|\"serverName\": \"[^\"]*\"|\"serverName\": \"$NEW_DOMAIN\"|" "$SCRIPT_DIR/Xray/config.json"
 
 # 更新启动脚本中的域名
 echo "更新启动脚本..."

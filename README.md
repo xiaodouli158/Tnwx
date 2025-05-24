@@ -36,7 +36,7 @@
 
 Nginx 配置文件位于 `Nginx/nginx.conf`，主要配置包括：
 
-1. 监听端口：8080
+1. 监听端口：80
 2. 服务器名称：当前配置为 `your-new-domain.com`
 3. 日志格式：详细记录请求信息，包括请求时间、客户端 IP、请求方法、URL、状态码等
 4. 日志文件：
@@ -168,7 +168,7 @@ ps aux | grep -E 'nginx|xray'
 
 如果看到 Nginx 和 Xray 进程，则表示服务正在运行。
 
-也可以访问网页 `http://your-domain:8080` 查看是否显示带有时间的网页。
+也可以访问网页 `http://your-domain:80` 查看是否显示带有时间的网页。
 
 ### 2. 如何查看访问记录？
 
@@ -184,7 +184,7 @@ tail -f Nginx/logs/default_access.log
 
 1. 检查服务是否正常运行
 2. 检查域名是否正确解析到服务器 IP
-3. 检查端口是否开放（8080）
+3. 检查端口是否开放（80）
 4. 查看错误日志：
    ```bash
    tail -f Nginx/logs/error.log
@@ -197,11 +197,12 @@ tail -f Nginx/logs/default_access.log
 
 ### 4. 如何修改端口？
 
-如果需要修改端口，请按照以下步骤操作：
+如果需要修改端口（当前默认 HTTP 端口为 80），请按照以下步骤操作：
 
-1. 修改 Nginx 配置文件 `Nginx/nginx.conf` 中的 `listen` 指令
-2. 如果使用 HTTPS，还需要修改 `start-services.sh` 中的 `SERVER_PORT` 变量
-3. 重启服务
+1. 修改 Nginx 配置文件 `Nginx/nginx.conf` 中的 `listen` 指令 (e.g., from `listen 0.0.0.0:80;` to `listen 0.0.0.0:NEW_PORT;`)
+2. 修改 `start-services.sh` 中的 `SERVER_PORT` 变量 to `NEW_PORT` if you want the generated connection strings to reflect this new port (especially if not using TLS, as the port would be part of the direct connection string).
+3. 如果配置了 HTTPS 并且 Nginx 仍然作为前端处理 TLS termination for Xray, ensure your HTTPS server block in `Nginx/nginx.conf` listens on the desired HTTPS port (e.g., 443) and that `SERVER_PORT` in `start-services.sh` reflects the external port used in connection strings (typically the HTTPS port, 443).
+4. 重启服务
 
 ### 5. 如何更新 UUID？
 
