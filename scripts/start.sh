@@ -25,7 +25,7 @@ XRAY_PID=$!
 sleep 2
 
 # 检查 Xray 是否启动成功
-if ! ps -p $XRAY_PID > /dev/null; then
+if ! kill -0 $XRAY_PID 2>/dev/null; then
     echo "Xray 启动失败"
     exit 1
 fi
