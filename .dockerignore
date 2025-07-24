@@ -5,6 +5,7 @@
 # Documentation
 README.md
 *.md
+!html/
 
 # Docker
 Dockerfile

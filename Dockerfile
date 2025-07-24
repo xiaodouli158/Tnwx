@@ -37,7 +37,7 @@ ENV DOMAIN=localhost \
     UUID=de04add9-5c68-8bab-950c-08cd5320df18 \
     VMESS_PATH=/api/stream/data \
     VLESS_PATH=/api/events/subscribe \
-    LOG_LEVEL=warning
+    LOG_LEVEL=warn
 
 # 暴露端口
 EXPOSE 8080
