@@ -10,7 +10,7 @@ PORT=${PORT:-8080}
 UUID=${UUID:-de04add9-5c68-8bab-950c-08cd5320df18}
 VMESS_PATH=${VMESS_PATH:-/api/stream/data}
 VLESS_PATH=${VLESS_PATH:-/api/events/subscribe}
-LOG_LEVEL=${LOG_LEVEL:-warning}
+LOG_LEVEL=${LOG_LEVEL:-warn}
 EOF
 
 echo "📋 当前配置:"
