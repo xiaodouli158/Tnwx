@@ -1,4 +1,41 @@
 {
-  "name": "Devcontainer",
-  "image": "ghcr.io/codesandbox/devcontainers/typescript-node:latest"
+  "name": "Nginx + Xray Proxy Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Nginx Xray Proxy",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "chmod +x scripts/*.sh *.sh && cp .env.example .env",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "GitHub.codespaces",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  
+  "remoteUser": "vscode"
 }

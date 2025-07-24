@@ -1,0 +1,52 @@
+worker_processes auto;
+pid /tmp/nginx.pid;
+error_log logs/error.log ${LOG_LEVEL};
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include Nginx/mime.types;
+    default_type application/octet-stream;
+    
+    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                   '$status $body_bytes_sent "$http_referer" "$http_user_agent"';
+    
+    access_log logs/access.log main;
+    sendfile on;
+    keepalive_timeout 65;
+
+    server {
+        listen 0.0.0.0:${PORT};
+        server_name ${DOMAIN};
+
+        # VMess WebSocket 代理
+        location ${VMESS_PATH} {
+            proxy_pass http://127.0.0.1:10000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        # VLESS WebSocket 代理
+        location ${VLESS_PATH} {
+            proxy_pass http://127.0.0.1:10001;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        # 默认页面
+        location / {
+            root html;
+            index index.html;
+        }
+    }
+}
